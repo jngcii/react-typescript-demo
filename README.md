@@ -17,6 +17,9 @@
         - webpack 설정 중, devServer 속성에 개발서버 정보를 세팅
         - 요 내용은 https://joshua1988.github.io/webpack-guide/tutorials/webpack-dev-server.html#%EC%8B%A4%EC%8A%B5-%EC%A0%88%EC%B0%A8 참고
 
+- 바벨
+    - 참고 : https://jeonghwan-kim.github.io/series/2019/12/22/frontend-dev-env-babel.html
+
 - 참고
     - https://jeonghwan-kim.github.io/dev/2019/06/25/react-ts.html
     - https://joshua1988.github.io/webpack-guide/
