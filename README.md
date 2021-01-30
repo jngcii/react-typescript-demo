@@ -28,6 +28,8 @@
 
 - 바벨
     - 참고 : https://jeonghwan-kim.github.io/series/2019/12/22/frontend-dev-env-babel.html
+    - 요기 보면 타입스크립트에 바벨 적용시키는 웹팩 설정 나와 있음
+        - https://www.zerocho.com/category/Webpack/post/58aa916d745ca90018e5301d
 
 - 참고
     - https://jeonghwan-kim.github.io/dev/2019/06/25/react-ts.html
