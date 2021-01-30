@@ -7,6 +7,15 @@
     - 참고 : https://geonlee.tistory.com/32
 
 - 웹팩
+    - 참고
+        - 기본 : https://jeonghwan-kim.github.io/series/2019/12/10/frontend-dev-env-webpack-basic.html
+    - 로더란?
+        - 웹팩은 모든 `파일`을 모듈로 본다. (js뿐만 아니라, png, css 등 모든 파일을!)
+        - 그렇기 때문에 모든 파일을 import 구문을 통해 js 파일로 가져올 수 있다.
+            <br> (import에 대해 알고 싶으면 [commonJS 공부!](https://jeonghwan-kim.github.io/series/2019/12/10/frontend-dev-env-webpack-basic.html#1-%EB%B0%B0%EA%B2%BD))
+        - 로더 : 로더는 ts, css, png같은 다른 종류의 파일을 js 문법으로 변환하거나 dataUrl 문자열로 변환한다.
+        - 자주 사용하는 로더
+            - css-loader, style-loader, file-loader, url-loader
     - 소스맵이란? : https://joshua1988.github.io/webpack-guide/devtools/source-map.html#%EC%86%8C%EC%8A%A4-%EB%A7%B5
     - webpack-cli를 설치해서 `webpck` 치면 알아서 동작!!!
         - 그냥 webpack치는건 좀 별로 -> package.json build 스크립트에 등록 -> npm run build 하면 webpack 실행

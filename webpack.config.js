@@ -1,4 +1,6 @@
-var HtmlWebpackPlugin = require('html-webpack-plugin');
+var HtmlWebpackPlugin = require('html-webpack-plugin')
+var { CleanWebpackPlugin } = require("clean-webpack-plugin")
+var { DefinePlugin } = require('webpack')
 
 module.exports = {
   mode: "development",
@@ -25,7 +27,32 @@ module.exports = {
     rules: [
       // .ts나 .tsx 확장자를 ts-loader가 트랜스파일 (선 컴파일...?)
       // es6 코드를 바벨이 처리하는 것처럼 타입스크립트 코드를 ts-loader가 처리하도록 설정했다. .ts나 .tsx 파일을 ts-loader가 해석하라는 설정
-      { test: /\.tsx?$/, loader: "ts-loader" }
+      { test: /\.tsx?$/, loader: "ts-loader" },
+
+      // loader에 배열을 설정하면 뒤의 로더부터 동작한다.
+      // 아래 설정은 css-loader를 적용해 css를 js코드로 변환한 후에, style-loader를 적용해 js로 변경된 스타일을 동적으로 돔에 추가
+      { test: /\.css$/, use: ["style-loader", "css-loader"] },
+
+      {
+        test: /\.png$/,
+        loader: "file-loader",
+        options: {
+          publicPath: "./dist/",
+          name: "[name].[ext]?[hash]"
+        }
+      },
+
+      {
+        test: /\.png$/,
+        use: {
+          loader: 'url-loader', // url 로더를 설정한다
+          options: {
+            publicPath: './dist/', // file-loader와 동일
+            name: '[name].[ext]?[hash]', // file-loader와 동일
+            limit: 5000 // 5kb 미만 파일만 data url로 처리
+          }
+        }
+      }
     ]
   },
 
@@ -34,9 +61,21 @@ module.exports = {
   },
 
   plugins: [
+    new DefinePlugin({}),
+
     new HtmlWebpackPlugin({
       // index.html 템플릿을 기반으로 빌드 결과물을 추가해줌
-      template: 'index.html',
+      template: './src/index.html',
+      templateParameters: { // 템플릿에 주입할 파라매터 변수 지정
+        env: process.env.NODE_ENV === 'production' ? '' : '(개발용)',
+      },
+      minify: process.env.NODE_ENV === 'production' ? {
+        collapseWhitespace: true, // 빈칸 제거
+        removeComments: true, // 주석 제거
+      } : false,
+      hash: true,
     }),
+
+    new CleanWebpackPlugin()
   ],
 }
